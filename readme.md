@@ -24,5 +24,9 @@ $ git remote rm origin
 
 $ git fetch origin
 
+# on peut comparer les différences entre la branche master locale et la branche origin/master
+
+$ git log master..origin/master
+
 ``` 
 

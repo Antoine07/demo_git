@@ -251,6 +251,52 @@ $ git log master..origin/master
 
 $ git fetch origin
 $ git merge origin/master
-# pour vérifier
-$ git oneline
 
+```
+## bisect
+
+trouver le commit responsable d'un bug, méthode dichotomique
+
+``` bash
+
+# rechercher un commit à partir duquel on a pas de bug, noté le sha1
+$ git checkout [sha1]
+
+$ git checkout master
+
+# démarrer le bisectage
+$ git bisect start
+
+# si la version courante est buguée
+$ git bisect bad
+
+# version non buguée
+$ git bisect good [sha1]
+
+# l'algo de bisectage commence
+bisecting ...
+[sha1]
+
+# si version pour ce sha1 est encore bugué
+$ git bisect bad
+bisecting ...
+[sha1]
+
+# si encore bugué ...
+$ git bisect bad
+
+# si non bugué ...
+$ git bisect good
+
+etc...
+
+# si git n'a plus de revision à tester, il arrive à la fin de la bisection il propose un commit
+$ git show [sha1] # pour voir le problème...
+
+# puis on arrête le bisectage
+$ git bisect reset
+
+# on fait un revert sur le sha1 trouvé on corrige les conflits et le bug si besoin
+$ git revert [sha1]
+
+```

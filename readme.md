@@ -135,10 +135,31 @@ $ git add .
 $ git commit # message de merge par défaut
 
 ```
-
+On peut avoir plusieurs conflits à gérer dans plusieurs fichiers
 
 ## annulation
+Commande reset modifie l'historique, il ne faut jamais le faire sur des commits déjà publiés!
 
+``` bash
+# annule le dernier commit et met tout le WD sans perte
+$ git reset HEAD~ 
+
+# annule le dernier commit et met tout dans la staging area sans perte
+$ git reset --soft HEAD~
+
+# annule le dernier commit et supprime les modifications...(danger)
+$ git reset --hard HEAD~
+
+# retire un fichier de la staging area, sans perte de modif
+$ git add [fileName]
+$ git reset HEAD [fileName]
+
+# on peut faire un git reset sur un commit, attention tous les commits suivants le commit annulé seront perdus:
+$ git reste  f597d47552d 
+
+...
+
+```
 
 ## remote
 

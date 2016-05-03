@@ -16,5 +16,9 @@ $ git remote -v
 
 $ git branch -a
 
+# supprimer un remote origin
+
+$ git remote rm origin
+
 ``` 
 

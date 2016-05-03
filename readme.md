@@ -34,15 +34,17 @@ $ git commit -am "modification contenu readme"
 
 ``` 
 
-## message de commit règle
+## message de commit règles
 
 - un titre de 49 caractères max
+- un texte plus long
+- on peut commiter qu'avec un titre option -m
 
 ``` bash
 
 $ git commit -m "étudiant/tp: si terminé, attribuer note"
 
-# ouvrir l'éditeur et mettre un titre et texte
+# ouvrir l'éditeur et mettre un titre et texte plus long
 
 $ git commit
 

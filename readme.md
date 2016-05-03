@@ -38,4 +38,8 @@ $ git oneline
 
 $ git diff
 
+## git log
+
+$ git log
+
 ``` 

@@ -1,7 +1,5 @@
 ## configuration Git
 
-Git est décentralisé et distribué
-
 Définir un utilisateur (obligatoire)
 
 ``` bash
@@ -14,20 +12,6 @@ $ git config --local user.name Tony
 $ git config --local user.email tony@tony.fr
 
 ``` 
-
-### message de commit règle
-
-- un titre de 49 caractères max
-
-``` bash
-
-$ git commit -m "étudiant/tp: si terminé, attribuer note"
-
-# ouvrir l'éditeur et mettre un titre et texte
-
-$ git commit
-
-```
 
 ### alias
 

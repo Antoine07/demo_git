@@ -111,6 +111,30 @@ $ git branch -d dev
 
 ```
 
+## gestion de conflit
+
+Pour fusionner deux branches Git repère le dernier commit commun entre les deux branches et utilise les modifs des deux branches.
+
+Il analyse trois version différente du dépôt:
+
+- version dernier commit
+- version de la première branche à fusionner actuelle
+- version de la deuxième branche à fusionner actuelle
+
+Il faut résoudre chaques conflits, lorsque deux versions du même fichier on été modifié aux mêmes endroits.
+
+``` bash
+<<<<<<< HEAD 
+	Music Pi 
+=======
+	SONIC 
+>>>>>>> branchB  
+
+$ git add . 
+$ git commit # message de merge par défaut
+
+```
+
 
 ## annulation
 

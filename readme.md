@@ -28,5 +28,11 @@ $ git fetch origin
 
 $ git log master..origin/master
 
+# git pull équivalent à git fetch + git merge
+
+$ git fetch origin
+$ git merge origin/master
+$ git oneline
+
 ``` 
 

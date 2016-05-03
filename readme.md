@@ -20,5 +20,9 @@ $ git branch -a
 
 $ git remote rm origin
 
+# fetch pour récupérer en local l'historique de la branche sans fusionner
+
+$ git fetch origin
+
 ``` 
 

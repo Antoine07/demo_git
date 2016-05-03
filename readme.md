@@ -34,5 +34,8 @@ $ git fetch origin
 $ git merge origin/master
 $ git oneline
 
-``` 
+## git diff
 
+$ git diff
+
+``` 

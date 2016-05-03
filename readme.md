@@ -2,10 +2,12 @@
 
 ## ajouter une branche distante
 
+Ajouter une branche distante (remote) dans son dépôt local
+
 ``` bash
 $ git remote add [nom_court] [url]
 ``` 
-### quelques commandes utiles pour le remote
+### Commandes remotes
 
 ``` bash
 
@@ -16,15 +18,17 @@ $ git remote -v
 
 $ git branch -a
 
-# supprimer un remote origin
+# respectivement supprimer, renommer un remote
 
 $ git remote rm origin
 
-# fetch pour récupérer en local l'historique de la branche sans fusionner
+$ git remote rename origin dev 
+
+# fetch récupérer la branche distante localement sans fusion avec sa branche master
 
 $ git fetch origin
 
-# on peut comparer les différences entre la branche master locale et la branche origin/master
+# Comparer les différences entre master local et distant (après un fetch)
 
 $ git log master..origin/master
 
@@ -32,6 +36,7 @@ $ git log master..origin/master
 
 $ git fetch origin
 $ git merge origin/master
+# pour vérifier
 $ git oneline
 
 ## git diff

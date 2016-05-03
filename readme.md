@@ -19,15 +19,16 @@ $ git cat-file -p 3c65 # décompresse un objet Git
 
 ``` bash
 
-$ git init # creation du dossier .git 
+$ git init # création du dossier .git 
 $ git add .
 $ git commit -m "first commit"
 
-# un fichier créer dans le dépôt n'est pas tracker par défaut, il faut l'ajouter à la staging une première fois
+# un fichier créé dans le dépôt n'est pas tracké par défaut, il faut l'ajouter à la staging area une première fois
+
 $ touch readme.md
 $ git add readme.md && git commit -m "ajout readme"
 
-# une fois tracker le fichier readme, ajout dans la staging puis commité
+# une fois tracké le fichier readme, ajout dans la staging area puis commité
 
 $ git commit -am "modification contenu readme"
 
@@ -47,7 +48,7 @@ $ git commit
 
 ```
 
-## commandes d'aides 
+## commandes d'aide 
 
 ``` bash
 
@@ -73,7 +74,7 @@ $ git tag -a v1.0 -m "version 1 de l'application"
 # tag léger peu utilisé
 $ git tag v1
 
-# étiquetté après coup
+# étiquetter après coup
 $ git tag -a v1.0.1 -m "version 1.0.1" 9fceb2
 
 ```
@@ -93,7 +94,7 @@ $ git branch dev
 
 ```
 
-Git fait un fast-foward sur la branche master et dev par exemple quand tous les commits de la branches master sont atteignables depuis la branche dev,
+Git fait un fast-foward sur la branche master et dev par exemple quand tous les commits de la branche master sont atteignables depuis la branche dev,
 sinon Git fait un commit de merge
 
 ``` bash

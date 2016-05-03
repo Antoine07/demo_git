@@ -125,11 +125,11 @@ Il analyse trois version différente du dépôt:
 Il faut résoudre chaques conflits, lorsque deux versions du même fichier on été modifié aux mêmes endroits.
 
 ``` bash
-<<<<<<< HEAD 
+tagtagtag HEAD 
 	Music Pi 
-=======
+tagtagtag
 	SONIC 
->>>>>>> branchB  
+tagtagtag branchB  
 
 $ git add . 
 $ git commit # message de merge par défaut

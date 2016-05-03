@@ -137,7 +137,7 @@ $ git commit # message de merge par défaut
 ```
 On peut avoir plusieurs conflits à gérer dans plusieurs fichiers
 
-## annulation
+## reset annulation
 Commande reset modifie l'historique, il ne faut jamais le faire sur des commits déjà publiés!
 
 ``` bash
@@ -158,6 +158,56 @@ $ git reset HEAD [fileName]
 $ git reste  f597d47552d 
 
 ...
+
+```
+
+## checkout
+
+### retour en arrière sans rien changer
+
+``` bash
+# mettre le dépôt tel qu'il était lors du commit f597d47552d, le pointeur se déplace sur le commit
+$ git checkout f597d47552d
+# pour remettre le pointeur sur le dernier commit
+$ git checkout master
+
+```
+
+### modifier un fichier dans l'historique
+
+``` bash
+# le fichier index.html est stagé dans l'état dans lequel il se trouvait pour ce [sha1]
+$ git checkout [sha1] index.html
+
+$ git commit -m "retour en arrière pour le code dans index.html"
+
+```
+
+### revert
+
+défaire ce qui a été fait, cela peut entrainer des conflits qu'il faudra résoudre
+
+``` bash
+# crée un commit qui annulera ce qui a été fait pour le commit 12916f5
+$ git revert 12916f5
+
+```
+
+## amend
+
+Dans le cas où on a oublié du code dans un commit
+
+``` bash
+
+# on ajoute le code qui manquait
+vim index.html
+
+$ git add index.html
+$ git commit --amend # associe les changements au dernier commit, le message du dernier commit s'ouvrira dans l'éditeur par défaut
+
+# si on souhaite uniquement modifier le message du commit
+
+$ git commit --amend
 
 ```
 

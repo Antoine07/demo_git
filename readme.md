@@ -2,7 +2,9 @@
 
 ## ajouter une branche distante
 
-
+``` bash
+$ git remote add [nom_court] [url]
+``` 
 ### quelques commandes utiles pour le remote
 
 ``` bash

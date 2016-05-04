@@ -309,7 +309,7 @@ $ git revert [sha1]
 
 ## cherry-pick
 
-récupérer un commit sur une branche que l'on ne souhaite pas garder
+but, récupérer un commit sur une branche que l'on ne souhaite pas garder sur celle-ci, avant suppression de la branche en question.
 
 ``` bash
 

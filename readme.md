@@ -112,6 +112,12 @@ $ git merge dev --no-ff
 
 $ git branch -d dev
 
+# voir toutes les branches non mergés
+$ git branch --no-merged
+
+# forcer la suppression d'une branche, non mergé donc, en perdant le travail dessus:
+$ git branch -D ma_branche
+
 ```
 
 ## gestion de conflit
@@ -300,3 +306,122 @@ $ git bisect reset
 $ git revert [sha1]
 
 ```
+
+## workflow
+
+- initialisation du projet
+``` bash
+
+$ git init
+# on peut vérifier quelles sont les fichiers qui serait stagés
+$ git add --all --dry-run > list.txt
+$ rm list.txt
+$ touch .gitignore
+$ git commit -m "C1: ajout du projet"
+$ git tag v1.0.0
+
+```
+- création de la branche dev
+
+``` bash
+
+$ git checkout -b dev
+$ git commit -m "C2: branche dev" --allow-empty
+
+```
+- envoie des deux branches créés sur le dépôt
+
+``` bash
+
+$ git push -u -all
+
+```
+- exemple de développement d'une feature, pour Simon
+
+``` bash
+
+$ git pull --all
+$ git branch -a
+* master
+remotes/origin/HEAD -> origin/master
+remotes/origin/dev
+remotes/origin/master
+```
+Attention, la branche dev n'est pas automatiquement créée, il faut faire localement
+
+``` bash
+
+$ git checkout remotes/origin/dev
+$ git checkout -b dev
+
+```
+
+- création d'une feature à partir de la branch dev
+
+``` bash
+$ git branch
+master
+*dev
+$ git checkout -b feature_routes
+$ git commit -m "feature: task route" --allow-empty
+# prévenir que l'on commence la feature sur la branch dev
+$ git push -u origin feature_routes
+
+```
+- fin de la feature, Simon doit commiter
+
+``` bash
+
+$ git pull --all
+$ git add .
+$ git commit -m "feature: task route terminée"
+$ git push -u --all
+
+```
+- revu de code par Antoine
+si tout marche bien, Antoine va merger la nouvelle feature dans la branche dev
+
+``` bash
+
+$ git pull --all
+$ git merge --no-ff feature_routes -m "feature: task route terminée -> branch dev"
+$ git push -u origin dev
+
+```
+- suppression de la branche feature_routes par Simon
+
+``` bash
+
+$ git pull --all
+$ git branch -d feature_routes
+$ git push origin :feature_routes
+
+```
+- Création de la branche de version par Lead_Antoine, elle n'acceptera plus que des correctifs
+
+``` bash
+
+$ git pull --all
+$ git checkout dev
+$ git checkout -b release-v1.0
+$ git commit --allow-empty -m "Release-v1.0"
+$ git push -u origin release-v1.0
+
+```
+
+- Intégration de la release dans la branche master
+
+``` bash
+
+$ git pull --all
+$ git checkout master
+$ git merge --no-ff release-v1.0 -m "version stable v1.0"
+$ git push 
+$ git branch -d release-v1.0
+$ git push origin :release-v1.0
+
+```
+
+## sous module
+
+Dépôt intégré, pour ne pas polluer les commits et statistiques de notre dépôt

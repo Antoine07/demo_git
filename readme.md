@@ -313,7 +313,7 @@ $ git revert [sha1]
 ``` bash
 
 $ git init
-# on peut vérifier quelles sont les fichiers qui serait stagés
+# exécute une commande sans effet --dry-run, liste les fichiers stagés
 $ git add --all --dry-run > list.txt
 $ rm list.txt
 $ touch .gitignore
@@ -326,13 +326,14 @@ $ git tag v1.0.0
 ``` bash
 
 $ git checkout -b dev
+# création d'un commit vide --allow-empty
 $ git commit -m "C2: branche dev" --allow-empty
 
 ```
-- envoie des deux branches créés sur le dépôt
+- envoie des deux branches créés sur le dépôt commits et réfs
 
 ``` bash
-
+# option -u commits + réfs
 $ git push -u -all
 
 ```

@@ -6,7 +6,7 @@ Les objets de Git: blob, tag, commit, tree
 
 Un commit possède un parent, un ancêtre, Git est un graphe orienté
 
-## commandes de plomberies
+## Commandes de plomberies
 
 ``` bash
 $ find .git\objects\ -type f # objets Git
@@ -15,7 +15,7 @@ $ git cat-file -p 3c65 # décompresse un objet Git
 
 ```
 
-## initialisation d'un dépôt
+## Initialisation d'un dépôt
 
 ``` bash
 
@@ -23,34 +23,34 @@ $ git init # création du dossier .git
 $ git add .
 $ git commit -m "first commit"
 
-# un fichier créé dans le dépôt n'est pas tracké par défaut, il faut l'ajouter à la staging area une première fois
+# Un fichier créé dans le dépôt n'est pas tracké par défaut, il faut l'ajouter à la staging area une première fois
 
 $ touch readme.md
 $ git add readme.md && git commit -m "ajout readme"
 
-# une fois tracké le fichier readme, ajout dans la staging area puis commité
+# Une fois tracké le fichier readme, ajout dans la staging area puis commité
 
 $ git commit -am "modification contenu readme"
 
 ``` 
 
-## message de commit règles
+## Règles messages de commit
 
 - un titre de 49 caractères max
 - un texte plus long
-- on peut commiter qu'avec un titre option -m
+- on ne peut commiter qu'avec un titre option -m
 
 ``` bash
 
 $ git commit -m "étudiant/tp: si terminé, attribuer note"
 
-# ouvrir l'éditeur et mettre un titre et texte plus long
+# Ouvrir l'éditeur et mettre un titre et texte plus long
 
 $ git commit
 
 ```
 
-## commandes d'aide 
+## Commandes d'aide 
 
 ``` bash
 
@@ -60,31 +60,33 @@ $ git log
 $ git oneline # voir alias dans la configuration
 $ git log master..origin/master # voir les différences entre deux branches
 $ git log -5 # 5 derniers commits
-$ git log -p -5 # log avec différence pour chaque commit 5 derniers
-$ git log --stat # stat sur les modif par commits
+$ git log -p -5 # log avec différence pour chaque commit sur les 5 derniers
+$ git log --stat # stat sur les modifs par commits
 $ git log --since=2.weeks # depuis deux semaines, --until existe également
-# blame qui a fait la modif...
+
+# Blame qui a fait la modif...
+
 $ git blame -L 40,60 readme.md # rechercher qui a fait les modifs par ligne -L
-$ git blame --since=3.weeks -- readme.md # depuis 3 semaines auteurs des modifications
+$ git blame --since=3.weeks -- readme.md # depuis 3 semaines avec auteurs des modifications
 $ git blame -L "/^### /" readme.md # recherche avec expression régulière
 ```
 
-## tags
+## Tags
 
 taguer un commit, tag de version
 
 ``` bash
-# tag annoté
+# Tag annoté
 $ git tag -a v1.0 -m "version 1 de l'application"
-# tag léger peu utilisé
+# Tag léger peu utilisé
 $ git tag v1
 
-# étiquetter après coup
+# Etiquetter après coup
 $ git tag -a v1.0.1 -m "version 1.0.1" 9fceb2
 
 ```
 
-## branches
+## Branches
 
 Une branche n'est rien d'autre qu'un pointeur sur commit
 
@@ -99,7 +101,7 @@ $ git branch dev
 
 ```
 
-Git fait un fast-foward sur la branche master et dev par exemple quand tous les commits de la branche master sont atteignables depuis la branche dev,
+Git fait un fast-foward sur la branche master et dev, par exemple quand tous les commits de la branche master sont atteignables depuis la branche dev,
 sinon Git fait un commit de merge
 
 ``` bash
@@ -107,33 +109,35 @@ sinon Git fait un commit de merge
 $ git checkout master
 $ git merge dev
 
-# forcer un commit de merge sur un fast-foward
+# Forcer un commit de merge sur un fast-foward
 
 $ git merge dev --no-ff
 
-# supprimer une branche 
+# Supprimer une branche 
 
 $ git branch -d dev
 
-# voir toutes les branches non mergés
+# Voir toutes les branches non mergés
+
 $ git branch --no-merged
 
-# forcer la suppression d'une branche, non mergé donc, en perdant le travail dessus:
+# Forcer la suppression d'une branche, non mergé donc, en perdant le travail dessus:
+
 $ git branch -D ma_branche
 
 ```
 
-## gestion de conflit
+## Gestion de conflit
 
 Pour fusionner deux branches Git repère le dernier commit commun entre les deux branches et utilise les modifs des deux branches.
 
-Il analyse trois version différente du dépôt:
+Il analyse trois versions différentes du dépôt:
 
 - version dernier commit
 - version de la première branche à fusionner actuelle
 - version de la deuxième branche à fusionner actuelle
 
-Il faut résoudre chaques conflits, lorsque deux versions du même fichier on été modifié aux mêmes endroits.
+Il faut résoudre chaque conflit, lorsque deux versions du même fichier ont été modifié aux mêmes endroits.
 
 ``` bash
 tagtagtag HEAD 
@@ -148,83 +152,83 @@ $ git commit # message de merge par défaut
 ```
 On peut avoir plusieurs conflits à gérer dans plusieurs fichiers
 
-## reset annulation
-Commande reset modifie l'historique, il ne faut jamais le faire sur des commits déjà publiés!
+## Reset annulation
+La commande reset modifie l'historique, il ne faut jamais le faire sur des commits déjà publiés!
 
 ``` bash
-# annule le dernier commit et met tout le WD sans perte
+# Annule le dernier commit et met tout dans le WD sans perte
 $ git reset HEAD~ 
 
-# annule le dernier commit et met tout dans la staging area sans perte
+# Annule le dernier commit et met tout dans la staging area sans perte
 $ git reset --soft HEAD~
 
-# annule le dernier commit et supprime les modifications...(danger)
+# Annule le dernier commit et supprime les modifications...(danger)
 $ git reset --hard HEAD~
 
-# retire un fichier de la staging area, sans perte de modif
+# Retire un fichier de la staging area, sans perte de modif
 $ git add [fileName]
 $ git reset HEAD [fileName]
 
-# on peut faire un git reset sur un commit, attention tous les commits suivants le commit annulé seront perdus:
+# On peut faire un git reset sur un commit, attention tous les commits suivants le commit annulé seront perdus:
 $ git reste  f597d47552d 
 
 ...
 
 ```
 
-## checkout
+## Checkout
 
-### retour en arrière sans rien changer
+### Retour en arrière sans rien changer
 
 ``` bash
-# mettre le dépôt tel qu'il était lors du commit f597d47552d, le pointeur se déplace sur le commit
+# Mettre le dépôt tel qu'il était lors du commit f597d47552d, le pointeur se déplace sur le commit
 $ git checkout f597d47552d
-# pour remettre le pointeur sur le dernier commit
+# Pour remettre le pointeur sur le dernier commit
 $ git checkout master
 
 ```
 
-### modifier un fichier dans l'historique
+### Modifier un fichier dans l'historique
 
 ``` bash
-# le fichier index.html est stagé dans l'état dans lequel il se trouvait pour ce [sha1]
+# Le fichier index.html est stagé dans l'état dans lequel il se trouvait pour ce [sha1]
 $ git checkout [sha1] index.html
 
 $ git commit -m "retour en arrière pour le code dans index.html"
 
 ```
 
-### revert
+### Revert
 
 défaire ce qui a été fait, cela peut entrainer des conflits qu'il faudra résoudre
 
 ``` bash
-# crée un commit qui annulera ce qui a été fait pour le commit 12916f5
+# Crée un commit qui annulera ce qui a été fait pour le commit 12916f5
 $ git revert 12916f5
 
 ```
 
-## amend
+## Amend
 
 Dans le cas où on a oublié du code dans un commit
 
 ``` bash
 
-# on ajoute le code qui manquait
+# On ajoute le code qui manquait
 vim index.html
 
 $ git add index.html
 $ git commit --amend # associe les changements au dernier commit, le message du dernier commit s'ouvrira dans l'éditeur par défaut
 
-# si on souhaite uniquement modifier le message du commit
+# Si on souhaite uniquement modifier le message du commit
 
 $ git commit --amend
 
 ```
 
-## remote
+## Remote
 
-## ajouter une branche distante
+## Ajouter une branche distante
 
 Ajouter une branche distante (remote) dans son dépôt local
 
@@ -235,20 +239,20 @@ $ git remote add [nom_court] [url]
 
 ``` bash
 
-# branches distantes
+# Branches distantes
 $ git remote -v
 
-# toutes les branches
+# Toutes les branches
 
 $ git branch -a
 
-# respectivement supprimer, renommer un remote
+# Respectivement supprimer, renommer un remote
 
 $ git remote rm origin
 
 $ git remote rename origin dev 
 
-# fetch récupérer la branche distante localement sans fusion avec sa branche master
+# Fetch récupérer la branche distante localement sans fusion avec sa branche master
 
 $ git fetch origin
 
@@ -262,75 +266,75 @@ $ git fetch origin
 $ git merge origin/master
 
 ```
-## bisect
+## Bisect
 
 trouver le commit responsable d'un bug, méthode dichotomique
 
 ``` bash
 
-# rechercher un commit à partir duquel on a pas de bug, noté le sha1
+# Rechercher un commit à partir duquel on a pas de bug, noter le sha1
 $ git checkout [sha1]
 
 $ git checkout master
 
-# démarrer le bisectage
+# Démarrer le bisectage
 $ git bisect start
 
-# si la version courante est buguée
+# Si la version courante est buguée
 $ git bisect bad
 
-# version non buguée
+# Version non buguée
 $ git bisect good [sha1]
 
-# l'algo de bisectage commence
+# L'algo de bisectage commence
 bisecting ...
 [sha1]
 
-# si version pour ce sha1 est encore bugué
+# Si version pour ce sha1 est encore bugué
 $ git bisect bad
 bisecting ...
 [sha1]
 
-# si encore bugué ...
+# Si encore bugué ...
 $ git bisect bad
 
-# si non bugué ...
+# Si non bugué ...
 $ git bisect good
 
 etc...
 
-# si git n'a plus de revision à tester, il arrive à la fin de la bisection il propose un commit
+# Si git n'a plus de révision à tester, il arrive à la fin de la bisection et il propose un commit
 $ git show [sha1] # pour voir le problème...
 
-# puis on arrête le bisectage
+# Puis on arrête le bisectage
 $ git bisect reset
 
-# on fait un revert sur le sha1 trouvé on corrige les conflits et le bug si besoin
+# On fait un revert sur le sha1 trouvé, on corrige les conflits et le bug si besoin
 $ git revert [sha1]
 
 ```
 
 ## cherry-pick
 
-but, récupérer un commit sur une branche que l'on ne souhaite pas garder sur celle-ci, avant suppression de la branche en question.
+But: récupérer un commit sur une branche que l'on ne souhaite pas garder sur celle-ci, avant suppression de la branche en question.
 
 ``` bash
 
 $ git checkout master
 $ git cherry-pick [sha1] # provenant de la branche feature_test
-# après conflit éventuels, on supprime la branche du commit cherry-pické
+# Après conflit éventuel, on supprime la branche du commit cherry-pické
 $ git branch -D feature_test
 
 ```
-rappel un rebasage est un cherry-pick automatisé
+Rappel: un rebasage est un cherry-pick automatisé
 
 ## workflow
 
-- initialisation du projet
+- Initialisation du projet
 ``` bash
 
 $ git init
-# exécute une commande sans effet --dry-run, liste les fichiers stagés
+# Exécute une commande sans effet --dry-run, liste les fichiers stagés
 $ git add --all --dry-run > list.txt
 $ rm list.txt
 $ touch .gitignore
@@ -338,23 +342,23 @@ $ git commit -m "C1: ajout du projet"
 $ git tag v1.0.0
 
 ```
-- création de la branche dev
+- Création de la branche dev
 
 ``` bash
 
 $ git checkout -b dev
-# création d'un commit vide --allow-empty
+# Création d'un commit vide --allow-empty
 $ git commit -m "C2: branche dev" --allow-empty
 
 ```
-- envoie des deux branches créés sur le dépôt commits et réfs
+- envoie des deux branches créées sur le dépôt commits et réfs
 
 ``` bash
-# option -u commits + réfs
+# Option -u commits + réfs
 $ git push -u -all
 
 ```
-- exemple de développement d'une feature, pour Simon
+- Exemple de développement d'une feature, pour Simon
 
 ``` bash
 
@@ -374,7 +378,7 @@ $ git checkout -b dev
 
 ```
 
-- création d'une feature à partir de la branch dev
+- Création d'une feature à partir de la branch dev
 
 ``` bash
 $ git branch
@@ -382,11 +386,11 @@ master
 *dev
 $ git checkout -b feature_routes
 $ git commit -m "feature: task route" --allow-empty
-# prévenir que l'on commence la feature sur la branch dev
+# Prévenir que l'on commence la feature sur la branch dev
 $ git push -u origin feature_routes
 
 ```
-- fin de la feature, Simon doit commiter
+- Fin de la feature, Simon doit commiter
 
 ``` bash
 
@@ -396,8 +400,8 @@ $ git commit -m "feature: task route terminée"
 $ git push -u --all
 
 ```
-- revu de code par Antoine
-si tout marche bien, Antoine va merger la nouvelle feature dans la branche dev
+- Revu de code par Antoine
+Si tout marche bien, Antoine va merger la nouvelle feature dans la branche dev
 
 ``` bash
 
@@ -406,7 +410,7 @@ $ git merge --no-ff feature_routes -m "feature: task route terminée -> branch d
 $ git push -u origin dev
 
 ```
-- suppression de la branche feature_routes par Simon
+- Suppression de la branche feature_routes par Simon
 
 ``` bash
 
@@ -440,6 +444,6 @@ $ git push origin :release-v1.0
 
 ```
 
-## sous module
+## Sous module
 
 Dépôt intégré, pour ne pas polluer les commits et statistiques de notre dépôt

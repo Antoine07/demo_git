@@ -307,6 +307,20 @@ $ git revert [sha1]
 
 ```
 
+## cherry-pick
+
+récupérer un commit sur une branche que l'on ne souhaite pas garder
+
+``` bash
+
+$ git checkout master
+$ git cherry-pick [sha1] # provenant de la branche feature_test
+# après conflit éventuels, on supprime la branche du commit cherry-pické
+$ git branch -D feature_test
+
+```
+rappel un rebasage est un cherry-pick automatisé
+
 ## workflow
 
 - initialisation du projet

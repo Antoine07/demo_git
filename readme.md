@@ -328,7 +328,7 @@ $ git branch -D feature_test
 ```
 Rappel: un rebasage est un cherry-pick automatisé
 
-## workflow
+## Workflow
 
 - Initialisation du projet
 ``` bash

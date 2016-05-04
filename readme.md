@@ -63,7 +63,10 @@ $ git log -5 # 5 derniers commits
 $ git log -p -5 # log avec différence pour chaque commit 5 derniers
 $ git log --stat # stat sur les modif par commits
 $ git log --since=2.weeks # depuis deux semaines, --until existe également
-
+# blame qui a fait la modif...
+$ git blame -L 40,60 readme.md # rechercher qui a fait les modifs par ligne -L
+$ git blame --since=3.weeks -- readme.md # depuis 3 semaines auteurs des modifications
+$ git blame -L "/^### /" readme.md # recherche avec expression régulière
 ```
 
 ## tags

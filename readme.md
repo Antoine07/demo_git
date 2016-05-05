@@ -481,7 +481,7 @@ $ git push origin :release-v1.0
 
 ### correction d'un bug sur la branche master, hotfixe
 
-correction du "bugname"
+correction du "bugname" par Antoine
 
 ``` bash
 $ git pull --all

@@ -458,7 +458,7 @@ $ git push -u origin release-v1.0
 
 ```
 
-- Intégration de la release dans la branche master
+- Intégration de la release dans la branche master et dev
 
 ``` bash
 
@@ -479,8 +479,35 @@ $ git push origin :release-v1.0
 
 ```
 
-### correction d'un bug
+### correction d'un bug sur la branche master, hotfixe
 
-## Sous module
+correction du "bugname"
 
-Dépôt intégré, pour ne pas polluer les commits et statistiques de notre dépôt
+``` bash
+$ git pull --all
+$ git checkout master
+$ git checkout -b hotfix-bugname
+# fin de la correction du bug
+$ git add --all
+$ git commit -m "Fix: bugname"
+$ git push -u origin hotfix-bugname
+
+```
+Lead_Antoine fait la revu du code et intégre le correctif à la branche master
+
+``` bash
+$ git checkout master
+$ git pull
+$ git merge --no-ff hotfix-bugname
+$ git push
+# tag pour le correctif
+$ git tag v1.0.1
+$ git push --tags
+# mettre à jour la branche dev
+$ git checkout dev
+$ git merge --no-ff hotfix-bugname
+$ git push -u origin dev
+# suppression de la branche hotfix
+$ git branch -d hotfix-bugname
+$ git push origin :hotfix-bugname
+```

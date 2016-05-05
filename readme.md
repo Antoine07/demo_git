@@ -330,6 +330,24 @@ Rappel: un rebasage est un cherry-pick automatisé
 
 ## Workflow
 
+### initialisation du dépôt
+
+organisation
+
+- pour utiliser Gitflow il faut deux branches permanentes: master et dev
+
+- les branches feature, release et hotfixe sont dites éphémères
+
+- les branches hotfixe et release sont mergées dans la branche master et dev
+
+- la branche feature est mergée uniquement dans la branche dev
+
+- les hotfixes sont taguées avec le deuxième chiffre Y de version X.Y, exemple tag 0.2 
+
+- les releases sont taguées avec le premier chiffre X de version X.Y, exemple tag 1.0
+
+- si on a une release et que l'on fait une nouvelle feature => merge dans dev et feature
+
 - Initialisation du projet
 ``` bash
 
@@ -338,6 +356,7 @@ $ git init
 $ git add --all --dry-run > list.txt
 $ rm list.txt
 $ touch .gitignore
+$ touch README.md
 $ git commit -m "C1: ajout du projet"
 $ git tag v1.0.0
 
@@ -351,25 +370,32 @@ $ git checkout -b dev
 $ git commit -m "C2: branche dev" --allow-empty
 
 ```
-- envoie des deux branches créées sur le dépôt commits et réfs
+- envoie des deux branches, master et dev, créées sur le dépôt commits avec les réfs (option -u)
+
+les refs envoient les pointeurs sur branche
 
 ``` bash
 # Option -u commits + réfs
-$ git push -u -all
+$ git push -u --all
 
 ```
-- Exemple de développement d'une feature, pour Simon
+### création d'une feature
+
+- Exemple de développement d'une feature, par Simon
 
 ``` bash
 
 $ git pull --all
+# vérification de l'import des branches distantes
 $ git branch -a
 * master
 remotes/origin/HEAD -> origin/master
 remotes/origin/dev
 remotes/origin/master
 ```
-Attention, la branche dev n'est pas automatiquement créée, il faut faire localement
+#### création de la branche dev
+
+attention, la branche dev n'est pas automatiquement créée, vous devez faire:
 
 ``` bash
 
@@ -377,7 +403,6 @@ $ git checkout remotes/origin/dev
 $ git checkout -b dev
 
 ```
-
 - Création d'une feature à partir de la branch dev
 
 ``` bash
@@ -385,8 +410,9 @@ $ git branch
 master
 *dev
 $ git checkout -b feature_routes
+# commit pour prévenir que l'on fait une nouvelle feature
 $ git commit -m "feature: task route" --allow-empty
-# Prévenir que l'on commence la feature sur la branch dev
+
 $ git push -u origin feature_routes
 
 ```
@@ -396,7 +422,7 @@ $ git push -u origin feature_routes
 
 $ git pull --all
 $ git add .
-$ git commit -m "feature: task route terminée"
+$ git commit -m "feature: task mise en place des routes app"
 $ git push -u --all
 
 ```

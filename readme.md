@@ -442,6 +442,7 @@ $ git push -u origin dev
 
 $ git pull --all
 $ git branch -d feature_routes
+# attention pour supprimer une branche distante bien mettre :
 $ git push origin :feature_routes
 
 ```
@@ -463,12 +464,22 @@ $ git push -u origin release-v1.0
 
 $ git pull --all
 $ git checkout master
-$ git merge --no-ff release-v1.0 -m "version stable v1.0"
+$ git merge --no-ff release-v1.0 -m "version master stable v1.0"
 $ git push 
+# création du tag release
+$ git tag v1.0
+# publication des tags sur le serveur
+$ git push --tags
+$ git checkout master
+$ git merge --no-ff release-v1.0 -m "version dev stable v1.0"
+$ git push 
+# suppression de la branche release
 $ git branch -d release-v1.0
 $ git push origin :release-v1.0
 
 ```
+
+### correction d'un bug
 
 ## Sous module
 

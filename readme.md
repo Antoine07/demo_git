@@ -256,7 +256,7 @@ Si des fichiers suivis par Git, modifiés mais non commité, sur une branche par
 
 S'applique sur un historique non publié, bien sûr...Il permet de linéariser l'historique
 
-![alt tag](https://github.com/Antoine07/demo_git/images/rebase.png)
+![alt tag](https://github.com/Antoine07/demo_git/blob/master/images/rebase.png)
 
 ## cherry-pick
 

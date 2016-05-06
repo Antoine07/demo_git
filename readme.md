@@ -258,6 +258,32 @@ S'applique sur un historique non publié, bien sûr...Il permet de linéariser l
 
 ![alt tag](https://github.com/Antoine07/demo_git/blob/master/images/rebase.png)
 
+- il faut pour mettre les commits C1 et C2 à la suite du master rebaser sur la branche sidebar ci-dessus
+
+``` bash
+$ git checkout sidebar 
+$ git rebase master 
+# puis on merge, fast-foward naturellement, gestion de conflits
+$ git merge sidebar
+# et on supprime la branche
+$ git branch -d sidebar
+
+```
+![alt tag](https://github.com/Antoine07/demo_git/blob/master/images/rebaseF.png)
+
+- on peut également utiliser le mode rebasage interactif pour fusionner des commits
+
+``` bash
+...
+$ git rebase -i master
+# dans le message du commit, si on choisit pick et squash on peut fusionner deux commits
+pick fb09e82 sidebar ajouté 
+squash  37f886  menu nav dans sidebar
+...
+
+```
+![alt tag](https://github.com/Antoine07/demo_git/blob/master/images/rebaseFu.png)
+
 ## cherry-pick
 
 But: récupérer un commit sur une branche que l'on ne souhaite pas garder sur celle-ci, avant suppression de la branche en question.

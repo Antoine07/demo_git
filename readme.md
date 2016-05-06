@@ -169,9 +169,10 @@ $ git reset --hard HEAD~
 $ git add [fileName]
 $ git reset HEAD [fileName]
 
-# On peut faire un git reset sur un commit, attention tous les commits suivants le commit annulé seront perdus:
+# On peut faire un git reset sur un commit, en utilisant les options précédentes, attention tous les commits suivants le commit annulé seront perdus:
 $ git reste  f597d47552d 
 
+$ git reset HEAD 
 ...
 
 ```
@@ -225,6 +226,52 @@ $ git commit --amend # associe les changements au dernier commit, le message du 
 $ git commit --amend
 
 ```
+## Stash (remisé)
+
+Si des fichiers suivis par Git, modifiés mais non commité, sur une branche particulière existent, alors on ne peut pas changer de branche. Cependant, on peut remiser son code sur la branche particulière pour y revenir plus tard.
+
+ ``` bash
+
+ $ git branch
+ master
+ dev
+ * feature_route
+ $ git stach
+ $ git checkout master
+ # correction d'un bug...
+ $ git checkout feature_route
+ # liste les stash
+ $ git stash list
+ stash@{0}: WIP on master: 01524a bug important 
+ stash@{1}: WIP on master: 452ets un test non validé
+ # remet le code remisé dans le WD on peut ajouter --index pour le re-stagé si il l'était
+ $ git stash apply
+ # ou appliquer un stash particulier
+ $ git stash apply stash@{1}
+ # supprime le stash
+ $ git stash drop 
+
+ ```
+## Rebase
+
+S'applique sur un historique non publié, bien sûr...Il permet de linéariser l'historique
+
+![alt tag](https://github.com/Antoine07/demo_git/images/rebase.png)
+
+## cherry-pick
+
+But: récupérer un commit sur une branche que l'on ne souhaite pas garder sur celle-ci, avant suppression de la branche en question.
+
+``` bash
+
+$ git checkout master
+$ git cherry-pick [sha1] # provenant de la branche feature_test
+# Après conflit éventuel, on supprime la branche du commit cherry-pické
+$ git branch -D feature_test
+
+```
+Rappel: un rebasage est un cherry-pick automatisé
+
 
 ## Remote
 
@@ -313,20 +360,6 @@ $ git bisect reset
 $ git revert [sha1]
 
 ```
-
-## cherry-pick
-
-But: récupérer un commit sur une branche que l'on ne souhaite pas garder sur celle-ci, avant suppression de la branche en question.
-
-``` bash
-
-$ git checkout master
-$ git cherry-pick [sha1] # provenant de la branche feature_test
-# Après conflit éventuel, on supprime la branche du commit cherry-pické
-$ git branch -D feature_test
-
-```
-Rappel: un rebasage est un cherry-pick automatisé
 
 ## Workflow
 

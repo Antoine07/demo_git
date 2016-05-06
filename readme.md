@@ -38,7 +38,7 @@ $ git commit -am "modification contenu readme"
 
 - un titre de 49 caractères max
 - un texte plus long
-- on ne peut commiter qu'avec un titre option -m
+- on peut commiter avec un titre uniquement option -m
 
 ``` bash
 

@@ -517,7 +517,7 @@ $ git push -u origin release-v1.0
 
 ```
 
-- Intégration de la release dans la branche master et dev
+- Intégration, par Lead_Antoine, de la release dans la branche master et dev
 
 ``` bash
 
@@ -545,28 +545,31 @@ correction du "bugname" par Antoine
 ``` bash
 $ git pull --all
 $ git checkout master
-$ git checkout -b hotfix-bugname
+$ git checkout -b hotfix_bugname
 # fin de la correction du bug
 $ git add --all
 $ git commit -m "Fix: bugname"
-$ git push -u origin hotfix-bugname
+# option -u pour publié toutes les refs
+$ git push -u origin hotfix_bugname
 
 ```
 Lead_Antoine fait la revu du code et intégre le correctif à la branche master
 
 ``` bash
 $ git checkout master
-$ git pull
-$ git merge --no-ff hotfix-bugname
+$ git pull --all
+$ git checkout remotes/origin/hotfix_bugname
+$ git checkout -b hotfix_bugname
+$ git merge --no-ff hotfix_bugname
 $ git push
 # tag pour le correctif
 $ git tag v1.0.1
 $ git push --tags
 # mettre à jour la branche dev
 $ git checkout dev
-$ git merge --no-ff hotfix-bugname
+$ git merge --no-ff hotfix_bugname
 $ git push -u origin dev
 # suppression de la branche hotfix
-$ git branch -d hotfix-bugname
-$ git push origin :hotfix-bugname
+$ git branch -d hotfix_bugname
+$ git push origin :hotfix_bugname
 ```
